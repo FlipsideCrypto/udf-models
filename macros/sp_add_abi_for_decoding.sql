@@ -7,7 +7,8 @@
         abi VARCHAR
     ) returns VARCHAR NOT NULL LANGUAGE SQL AS $$
 BEGIN
-    CREATE TABLE if NOT EXISTS ethereum.bronze_public.user_abis(
+    CREATE schema if NOT EXISTS udfs;
+CREATE TABLE if NOT EXISTS udfs.bronze_public.user_abis(
         contract_address VARCHAR,
         blockchain VARCHAR,
         abi VARCHAR,
@@ -36,7 +37,7 @@ CASE
                     abi_hash = CONCAT(LOWER(:contract_address), '-', SHA2(PARSE_JSON(:ABI)))) = 1
             ) THEN
             INSERT INTO
-                ethereum.bronze_public.user_abis (
+                udfs.bronze_public.user_abis (
                     contract_address,
                     blockchain,
                     abi,
@@ -53,7 +54,7 @@ CASE
                 TRUE AS duplicate_abi;
                 ELSE
             INSERT INTO
-                ethereum.bronze_public.user_abis (
+                udfs.bronze_public.user_abis (
                     contract_address,
                     blockchain,
                     abi,
