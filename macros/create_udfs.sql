@@ -8,6 +8,7 @@
         {{ create_udf_call_node() }}
         {{ create_udf_call_read_batching() }}
         {{ create_udf_api() }}
+        {{ create_udf_hex_signature() }}
 
         {% endset %}
         {% do run_query(sql) %}

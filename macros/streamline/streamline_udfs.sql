@@ -30,3 +30,13 @@
         'https://smro9shis5.execute-api.us-east-1.amazonaws.com/dev/udf_api'
     {%- endif %};
 {% endmacro %}
+
+{% macro create_udf_hex_signature() %}
+    CREATE EXTERNAL FUNCTION IF NOT EXISTS streamline.udf_hex_signature(
+        string VARCHAR
+    ) returns text api_integration = aws_udf_api AS {% if target.name == "prod" %}
+        'https://nvbe90pdg3.execute-api.us-east-1.amazonaws.com/prod/udf_hex_signature'
+    {% else %}
+        'https://smro9shis5.execute-api.us-east-1.amazonaws.com/dev/udf_hex_signature'
+    {%- endif %};
+{% endmacro %}
