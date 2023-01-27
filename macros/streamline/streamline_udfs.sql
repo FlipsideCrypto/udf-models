@@ -1,5 +1,5 @@
 {% macro create_udf_call_read_batching() %}
-    CREATE EXTERNAL FUNCTION IF NOT EXISTS streamline.udf_json_rpc_read_calls(
+    CREATE OR REPLACE EXTERNAL FUNCTION streamline.udf_json_rpc_read_calls(
         secret_name VARCHAR,
         node_url VARCHAR,
         headers OBJECT,
@@ -12,7 +12,7 @@
 {% endmacro %}
 
 {% macro create_udf_api() %}
-    CREATE EXTERNAL FUNCTION IF NOT EXISTS streamline.udf_api(
+    CREATE OR REPLACE EXTERNAL FUNCTION streamline.udf_api(
         method VARCHAR,
         url VARCHAR,
         headers OBJECT,
