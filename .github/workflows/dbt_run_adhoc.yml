@@ -66,4 +66,3 @@ jobs:
       - name: Run DBT Jobs
         run: |
           ${{ matrix.command }}
-          
