@@ -44,7 +44,7 @@
     CREATE
     OR REPLACE EXTERNAL FUNCTION streamline.udf_hex_encode_function(
         STRING VARCHAR
-    ) returns variant api_integration = aws_udf_api AS {% if target.name == "prod" %}
+    ) returns text api_integration = aws_udf_api AS {% if target.name == "prod" %}
         'https://nvbe90pdg3.execute-api.us-east-1.amazonaws.com/prod/udf_hex_encode_function'
     {% else %}
         'https://smro9shis5.execute-api.us-east-1.amazonaws.com/dev/udf_hex_encode_function'
